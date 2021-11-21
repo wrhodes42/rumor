@@ -1,8 +1,4 @@
 <template>
-  <!--[if lt IE 8]>
-    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
-
   <div id="site-wrapper">
       
       <!--########## BOTTOM #########-->
@@ -144,7 +140,7 @@
 <script>
   import sanity from "../client";
   import { SanityBlocks } from "sanity-blocks-vue-component";
-  import $ from 'jquery';
+  //import $ from "jquery";
 
   const configQuery = 
   `*[_id == 'config'][0] {
@@ -173,14 +169,13 @@
     created() {
       this.fetchData();
     },
+    /*
     mounted() {
       this.$nextTick(() => {
 
         var scripts = [
             "../js/vendor/jquery-ui-1.12.1.custom/jquery-ui-1.12.1.custom/jquery-ui.min.js",
-            "../js/vendor/turn.min.js"
         ];
-
         scripts.forEach(script => {
             let tag = document.createElement("script");
             tag.setAttribute("src", script);
@@ -189,48 +184,50 @@
 
         var setUpWait;
           clearTimeout(setUpWait);
-          setUpWait = setTimeout(this.setUpSite, 1000);
+          setUpWait = setTimeout(this.setUpSite, 3000);
       })
     },
+    */
     methods: {
 
-      fetchData() {
-        this.error = this.post = null;
-        this.loading = true;
+        fetchData() {
+            this.error = this.post = null;
+            this.loading = true;
 
-        sanity.fetch(linksQuery).then(
-          (linksRes) => {
-            this.links = linksRes;
-          },
-          (error) => {
-            this.error = error;
-          }
-        );
+            sanity.fetch(linksQuery).then(
+                (linksRes) => {
+                    this.links = linksRes;
+                },
+                (error) => {
+                    this.error = error;
+                }
+            );
 
-        sanity.fetch(configQuery).then(
-          (configRes) => {
-            this.config = configRes;
-          },
-          (error) => {
-            this.error = error;
-          }
-        );
+            sanity.fetch(configQuery).then(
+                (configRes) => {
+                    this.config = configRes;
+                },
+                (error) => {
+                    this.error = error;
+                }
+            );
 
-        this.loading = false;
-      },
+            this.loading = false;
+        },
 
-      swapIframe(loc){
+    swapIframe(loc){
         document.getElementById('background').src = loc;
-      },
-
+    }
+    /*
       setUpSite(){
         SetUpSite();
       }
-    },
+      */
+    }
   };
 
   //JQUERY STUFF
-
+    /*
     var windowHeight = $(window).height();
 
     var logoPadding = $("#logo-front-l").css("padding-top").replace("px", "") * 2;
@@ -461,5 +458,5 @@
       $("#receive-simple").fadeOut(400);
       $("#submit-simple").fadeOut(400);
   });
-  
+  */
 </script>
