@@ -11,6 +11,8 @@
     "@sanity/client": "^2.21.10",
     "@sanity/image-url": "^1.0.1",
     "core-js": "^3.6.5",
+    "jquery": "^3.6.0",
+    "jquery-ui": "^1.12.1",
     "sanity-blocks-vue-component": "^1.0.1",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0"
