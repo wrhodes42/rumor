@@ -177,12 +177,14 @@
       this.$nextTick(() => {
 
         var scripts = [
-          "js/vendor/modernizr-2.8.3.min.js"
+            "../js/vendor/jquery-ui-1.12.1.custom/jquery-ui-1.12.1.custom/jquery-ui.min.js",
+            "../js/vendor/turn.min.js"
         ];
+
         scripts.forEach(script => {
-          let tag = document.createElement("script");
-          tag.setAttribute("src", script);
-          document.head.appendChild(tag);
+            let tag = document.createElement("script");
+            tag.setAttribute("src", script);
+            document.head.appendChild(tag);
         });
 
         var setUpWait;
@@ -229,18 +231,26 @@
 
   //JQUERY STUFF
 
+    var windowHeight = $(window).height();
+
+    var logoPadding = $("#logo-front-l").css("padding-top").replace("px", "") * 2;
+    var logoHeight = windowHeight - logoPadding;
+    var logoWidth = logoHeight * 0.1875;
+    
+    var leftWidth = logoWidth + logoPadding;
+
+    var windowWidth = $(window).width();
+
+    var logoPaddingB = $("#logo-front-b").css("padding-top").replace("px", "") * 2;
+    var logoWidthB = windowWidth - logoPaddingB;
+    var logoHeightB = logoWidthB * 0.2125;
+
+    var bottomHeight = logoHeightB + logoPaddingB;
+
   function SetUpSite()
   {
     //########## LEFT ##########//     
     //set widths
-    windowHeight = $(window).height();
-
-    logoPadding = $("#logo-front-l").css("padding-top").replace("px", "") * 2;
-    logoHeight = windowHeight - logoPadding;
-    logoWidth = logoHeight * 0.1875;
-    
-    leftWidth = logoWidth + logoPadding;
-
     $("#logo-img-front-l").css("width", logoWidth + "px");
     $("#logo-img-back-l").css("width", logoWidth + "px");
 
@@ -251,13 +261,6 @@
 
     //########## BOTTOM ##########//
     //set heights
-    windowWidth = $(window).width();
-
-    logoPaddingB = $("#logo-front-b").css("padding-top").replace("px", "") * 2;
-    logoWidthB = windowWidth - logoPaddingB;
-    logoHeightB = logoWidthB * 0.2125;
-
-    bottomHeight = logoHeightB + logoPaddingB;
 
     $("#logo-img-front-b").css("height", logoHeightB + "px");
     $("#logo-img-back-b").css("height", logoHeightB + "px");
@@ -275,11 +278,10 @@
     //little fix for the iframe size on mobile
     //mobile hack
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-        mobile = true;
         // Add body class to target styles for touch devices with CSS
         $('body').addClass('touch-device');
     }      
-  };
+  }
 
   ///////////////////////////////end setup site
 
@@ -309,13 +311,10 @@
   function resize(){
 
     //LEFT
-    windowHeight = $(window).innerHeight();
 
-    logoPadding = $("#logo-front-l").css("padding-top").replace("px", "") * 2;
-    logoHeight = windowHeight - logoPadding;
-    logoWidth = logoHeight * 0.1875;
+    var logoPadding = $("#logo-front-l").css("padding-top").replace("px", "") * 2;
 
-    leftWidth = logoWidth + logoPadding;
+    var leftWidth = logoWidth + logoPadding;
 
     $("#logo-img-front-l").css("width", logoWidth + "px");
     $("#logo-img-back-l").css("width", logoWidth + "px");
@@ -326,13 +325,13 @@
     $("#submit-l").css("padding-left", leftWidth);
     
     //BOTTOM
-    windowWidth = $(window).innerWidth();
+    var windowWidth = $(window).innerWidth();
 
-    logoPaddingB = $("#logo-front-b").css("padding-top").replace("px", "") * 2;
-    logoWidthB = windowWidth - logoPaddingB;
-    logoHeightB = logoWidthB * 0.2125;
+    var logoPaddingB = $("#logo-front-b").css("padding-top").replace("px", "") * 2;
+    var logoWidthB = windowWidth - logoPaddingB;
+    var logoHeightB = logoWidthB * 0.2125;
 
-    bottomHeight = logoHeightB + logoPaddingB;
+    var bottomHeight = logoHeightB + logoPaddingB;
 
     $("#logo-img-front-b").css("height", logoHeightB + "px");
     $("#logo-img-back-b").css("height", logoHeightB + "px");
@@ -340,13 +339,13 @@
     $("#bottom").css("height", bottomHeight);
     $("#back-b").css("padding-bottom", bottomHeight);
     $("#nav-b").css("padding-bottom", bottomHeight);
-  };
+  }
 
   //open 1
   function hClose(){
       $("#logo-img-front-l").css("transform", "rotateY(0deg)");
       $("#left").css("width", leftWidth).addClass("closed");
-  };
+  }
           
   $("#logo-front-l").click(function(){
       if($("#left").hasClass("closed")){
@@ -392,7 +391,7 @@
       $("#nav-b").fadeOut(400);
       $("#logo-img-front-b").css("transform", "rotateX(0deg)");
       $("#bottom").css("height", bottomHeight).removeClass("open");
-  };
+  }
 
   $("#logo-front-b").click(function(){
       if($("#bottom").hasClass("open")){

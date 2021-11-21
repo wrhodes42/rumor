@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import sanity from "../client";
+
   const postsQuery = 
     `*[_type == "post"]{
         _id,
