@@ -2,6 +2,7 @@
   <!--[if lt IE 8]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
+
   <div id="site-wrapper">
       
       <!--########## BOTTOM #########-->
@@ -20,9 +21,7 @@
           
           <div id="back-b">
               <div id="what-b">
-                  <p>
-                      {{ content.text.what-is-rumor }}
-                  </p>
+                    <SanityBlocks :blocks="config.about"/>
               </div>
               
               <div id="receive-b">
@@ -35,9 +34,7 @@
               </div>
               
               <div id="submit-b">
-                  <p>
-                  {{ content.text.submit-a-rumor }}
-                  </p>
+                  <SanityBlocks :blocks="config.submit"/>
                   <a class="h1" href="mailto:rumor.pu@gmail.com">SUBMIT</a>
               </div>
               
@@ -67,9 +64,7 @@
                   </div>
                   
                   <div id="what-l">
-                      <p>
-                          {{ content.text.what-is-rumor }}
-                      </p>
+                      <SanityBlocks :blocks="config.about"/>
                   </div>
                   
                   <div id="receive-l">
@@ -82,9 +77,7 @@
                   </div>
 
                   <div id="submit-l">
-                      <p>
-                      {{ content.text.submit-a-rumor }}
-                      </p>
+                      <SanityBlocks :blocks="config.submit"/>
                       <a class="h1" href="mailto:rumor.pu@gmail.com">SUBMIT</a>
                   </div>
               </div>
@@ -106,9 +99,7 @@
           </div>
           <div id="back-simple">
               <div id="what-simple">
-                      <p>
-                          {{ content.text.what-is-rumor }}
-                      </p>
+                      <SanityBlocks :blocks="config.about"/>
                   </div>
                   
                   <div id="receive-simple">
@@ -121,9 +112,7 @@
                   </div>
 
                   <div id="submit-simple">
-                      <p>
-                      {{ content.text.submit-a-rumor }}
-                      </p>
+                      <SanityBlocks :blocks="config.submit"/>
                       <a class="h1" href="mailto:rumor.pu@gmail.com">SUBMIT</a>
                   </div>
               
@@ -138,27 +127,9 @@
       <div id="iframe">
           <!-- floaty things -->
           <div id="navigation">
-              <div class="floaty ui-draggable" id="archive">
-                  <img class="floaty-main" src="content/iframes/archive/image.png">
-                  <img class="floaty-hover" src="content/iframes/archive/image-hover.gif">
-              </div>
-
-              <div class="floaty ui-draggable" id="suggestions">
-                  <img class="floaty-main" src="content/iframes/suggestions/image.png">
-                  <img class="floaty-hover" src="content/iframes/suggestions/image-hover.gif">
-              </div>
-
-              <div class="floaty ui-draggable" id="map">
-                  <img class="floaty-main" src="content/iframes/map/image.png">
-                  <img class="floaty-hover" src="content/iframes/map/image-hover.gif">
-              </div>
-              <div class="floaty ui-draggable" id="home">
-                  <img class="floaty-main" src="content/iframes/home/image.png">
-                  <img class="floaty-hover" src="content/iframes/home/image-hover.gif">
-              </div>
-              <div class="floaty ui-draggable" id="wikipedia">
-                  <img class="floaty-main" src="content/iframes/wikipedia/image.png">
-                  <img class="floaty-hover" src="content/iframes/wikipedia/image-hover.gif">
+              <div class="floaty ui-draggable" v-for="link in links" :id="link.title" :key="link._id" @click="swapIframe(link.url)">
+                  <img class="floaty-main" :src="link.thumb">
+                  <img class="floaty-hover" :src="link.thumbHover">
               </div>
           </div>
 
@@ -181,13 +152,13 @@
     }`;
 
   const linksQuery = 
-  `*[_type == "iframe"]{
+  `*[_type == "link"]{
       _id,
       title,
       url,
-      thumb,
-      thumbHover
-    }[0...50]`;
+      'thumb' : thumb.asset->url,
+      'thumbHover' : thumbHover.asset->url
+    }`;
 
   export default {
     name: "Home",
@@ -214,12 +185,13 @@
           document.head.appendChild(tag);
         });
 
-        var resizeWait;
-          clearTimeout(resizeWait);
-          resizeWait = setTimeout(this.setUpSite, 1000);
+        var setUpWait;
+          clearTimeout(setUpWait);
+          setUpWait = setTimeout(this.setUpSite, 1000);
       })
     },
     methods: {
+
       fetchData() {
         this.error = this.post = null;
         this.loading = true;
@@ -244,6 +216,11 @@
 
         this.loading = false;
       },
+
+      swapIframe(loc){
+        document.getElementById('background').src = loc;
+      },
+
       setUpSite(){
         SetUpSite();
       }
@@ -252,8 +229,238 @@
 
   //JQUERY STUFF
 
-  function SetUpSite(){
+  function SetUpSite()
+  {
+    //########## LEFT ##########//     
+    //set widths
+    windowHeight = $(window).height();
 
+    logoPadding = $("#logo-front-l").css("padding-top").replace("px", "") * 2;
+    logoHeight = windowHeight - logoPadding;
+    logoWidth = logoHeight * 0.1875;
+    
+    leftWidth = logoWidth + logoPadding;
+
+    $("#logo-img-front-l").css("width", logoWidth + "px");
+    $("#logo-img-back-l").css("width", logoWidth + "px");
+
+    $("#left.closed").css("width", leftWidth);
+    $("#what-l").css("padding-left", leftWidth);
+    $("#receive-l").css("padding-left", leftWidth);
+    $("#submit-l").css("padding-left", leftWidth);
+
+    //########## BOTTOM ##########//
+    //set heights
+    windowWidth = $(window).width();
+
+    logoPaddingB = $("#logo-front-b").css("padding-top").replace("px", "") * 2;
+    logoWidthB = windowWidth - logoPaddingB;
+    logoHeightB = logoWidthB * 0.2125;
+
+    bottomHeight = logoHeightB + logoPaddingB;
+
+    $("#logo-img-front-b").css("height", logoHeightB + "px");
+    $("#logo-img-back-b").css("height", logoHeightB + "px");
+
+    $("#bottom").css("height", bottomHeight);
+    $("#back-b").css("padding-bottom", bottomHeight);
+    $("#nav-b").css("padding-bottom", bottomHeight);
+    //END 
+    
+    // draggable floaty things
+    $(".floaty").draggable({ 
+        containment: "window"
+    });
+
+    //little fix for the iframe size on mobile
+    //mobile hack
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        mobile = true;
+        // Add body class to target styles for touch devices with CSS
+        $('body').addClass('touch-device');
+    }      
+  };
+
+  ///////////////////////////////end setup site
+
+  //set mobile height to viewport                
+  function onResize() {
+    document.documentElement.style.setProperty('--window-height', window.innerHeight + "px");
   }
+  window.onresize = onResize;
+  
+  
+  //reveal floatys on click
+  $('.flap').click(function(){
+    $('#navigation').fadeIn(400);
+    $('.flap').removeClass('flap');
+  });
+  
+  //smart resize
+  var resizeId;
+  $(window).resize(function() {
+    clearTimeout(resizeId);
+    resizeId = setTimeout(resize, 500);
+  });
+  
 
+  
+  // RESIZE FUNCTION
+  function resize(){
+
+    //LEFT
+    windowHeight = $(window).innerHeight();
+
+    logoPadding = $("#logo-front-l").css("padding-top").replace("px", "") * 2;
+    logoHeight = windowHeight - logoPadding;
+    logoWidth = logoHeight * 0.1875;
+
+    leftWidth = logoWidth + logoPadding;
+
+    $("#logo-img-front-l").css("width", logoWidth + "px");
+    $("#logo-img-back-l").css("width", logoWidth + "px");
+
+    $("#left.closed").css("width", leftWidth);
+    $("#what-l").css("padding-left", leftWidth);
+    $("#receive-l").css("padding-left", leftWidth);
+    $("#submit-l").css("padding-left", leftWidth);
+    
+    //BOTTOM
+    windowWidth = $(window).innerWidth();
+
+    logoPaddingB = $("#logo-front-b").css("padding-top").replace("px", "") * 2;
+    logoWidthB = windowWidth - logoPaddingB;
+    logoHeightB = logoWidthB * 0.2125;
+
+    bottomHeight = logoHeightB + logoPaddingB;
+
+    $("#logo-img-front-b").css("height", logoHeightB + "px");
+    $("#logo-img-back-b").css("height", logoHeightB + "px");
+
+    $("#bottom").css("height", bottomHeight);
+    $("#back-b").css("padding-bottom", bottomHeight);
+    $("#nav-b").css("padding-bottom", bottomHeight);
+  };
+
+  //open 1
+  function hClose(){
+      $("#logo-img-front-l").css("transform", "rotateY(0deg)");
+      $("#left").css("width", leftWidth).addClass("closed");
+  };
+          
+  $("#logo-front-l").click(function(){
+      if($("#left").hasClass("closed")){
+          $("#left").css("width", "50%").removeClass("closed");
+          $("#logo-img-front-l").css("transform", "rotateY(-180deg)");
+          $("#nav-l").delay(400).fadeIn(150);
+      } else{
+          $("#nav-l").fadeOut(150);
+          setTimeout(hClose, 150);
+      }
+  });
+  
+  //open 2
+  $("#what-button-l").click(function(){
+      $("#left").css("transform", "rotateX(-180deg)");
+      $("#front-l").fadeOut(400);
+      $("#what-l").fadeIn(400);
+  });
+
+  $("#receive-button-l").click(function(){
+      $("#left").css("transform", "rotateX(-180deg)");
+      $("#front-l").fadeOut(400);
+      $("#receive-l").fadeIn(400);
+  });
+
+  $("#submit-button-l").click(function(){
+      $("#left").css("transform", "rotateX(-180deg)");
+      $("#front-l").fadeOut(400);
+      $("#submit-l").fadeIn(400);
+  });
+
+  //close 2
+  $("#logo-back-l").click(function(){
+      $("#left").css("transform", "rotateX(0deg)");
+      $("#front-l").fadeIn(400);
+      $("#what-l").fadeOut(400);
+      $("#receive-l").fadeOut(400);
+      $("#submit-l").fadeOut(400);
+  });
+
+  // open 1
+  function lClose(){
+      $("#nav-b").fadeOut(400);
+      $("#logo-img-front-b").css("transform", "rotateX(0deg)");
+      $("#bottom").css("height", bottomHeight).removeClass("open");
+  };
+
+  $("#logo-front-b").click(function(){
+      if($("#bottom").hasClass("open")){
+          lClose();
+      }else{
+          $("#bottom").css("height", "50%").addClass("open");
+          $("#logo-img-front-b").css("transform", "rotateX(-180deg)");
+          $("#nav-b").fadeIn(400);
+      }
+  });
+
+  //open 2
+  $("#what-button-b").click(function(){
+      $("#bottom").css("transform", "rotateY(-180deg)");
+      $("#front-b").fadeOut(400);
+      $("#what-b").fadeIn(400);
+  });
+
+  $("#receive-button-b").click(function(){
+      $("#bottom").css("transform", "rotateY(-180deg)");
+      $("#front-b").fadeOut(400);
+      $("#receive-b").fadeIn(400);
+  });
+
+  $("#submit-button-b").click(function(){
+      $("#bottom").css("transform", "rotateY(-180deg)");
+      $("#front-b").fadeOut(400);
+      $("#submit-b").fadeIn(400);
+  });
+
+
+  //close 2
+  $("#logo-back-b").click(function(){
+      $("#bottom").css("transform", "rotateY(0deg)");
+      $("#front-b").fadeIn(400);
+      $("#what-b").fadeOut(400);
+      $("#receive-b").fadeOut(400);
+      $("#submit-b").fadeOut(400);
+  });
+
+
+  //########## SIMPLE-MOBILE ##########//
+  
+  $("#what-button-simple").click(function(){
+      $("#simplemobile").css("transform", "rotateY(-180deg)");
+      $("#front-simple").fadeOut(400);
+      $("#what-simple").fadeIn(400);
+  });
+
+  $("#receive-button-simple").click(function(){
+      $("#simplemobile").css("transform", "rotateY(-180deg)");
+      $("#front-simple").fadeOut(400);
+      $("#receive-simple").fadeIn(400);
+  });
+
+  $("#submit-button-simple").click(function(){
+      $("#simplemobile").css("transform", "rotateY(-180deg)");
+      $("#front-simple").fadeOut(400);
+      $("#submit-simple").fadeIn(400);
+  });
+
+  //close simple
+  $("#close-simple").click(function(){
+      $("#simplemobile").css("transform", "rotateY(0deg)");
+      $("#front-simple").fadeIn(400);
+      $("#what-simple").fadeOut(400);
+      $("#receive-simple").fadeOut(400);
+      $("#submit-simple").fadeOut(400);
+  });
+  
 </script>
