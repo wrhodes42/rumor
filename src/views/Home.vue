@@ -5,7 +5,7 @@
       <div id="bottom" class="flap">
           <div id="front-b">
               <ul id="nav-b">
-                  <li class="nav-item" id="what-button-b"><a class="h1" href=#>What is Rumor</a></li>
+                  <li class="nav-item" id="what-button-b"><a class="h1" href=# @click='showInfoBlockB(whatB)'>What is Rumor</a></li>
                   <li class="nav-item" id="receive-button-b"><a class="h1" href=#>Receive a Rumor</a></li>
                   <li class="nav-item" id="submit-button-b"><a class="h1" href=#>Submit a Rumor</a></li>
               </ul>
@@ -16,7 +16,7 @@
           </div>
           
           <div id="back-b">
-              <div id="what-b">
+              <div id="what-b" ref='whatB'>
                     <SanityBlocks :blocks="config.about"/>
               </div>
               
@@ -44,26 +44,26 @@
       <div id="left" class="closed flap">
               <div id="front-l">
 
-                  <div id="logo-front-l">
+                  <div id="logo-front-l" @click='logoFrontLClick'>
                       <img id="logo-img-front-l" src="img/ambigram-vertical.svg">
                   </div>
 
                   <ul id="nav-l">
-                      <li class="nav-item" id="what-button-l"><a class="h1" href=#>What is Rumor</a></li>
-                      <li class="nav-item" id="receive-button-l"><a class="h1" href=#>Receive a Rumor</a></li>
-                      <li class="nav-item" id="submit-button-l"><a class="h1" href=#>Submit a Rumor</a></li>
+                      <li class="nav-item" id="what-button-l"><a class="h1" href=# @click='showInfoBlockL(this.$refs.whatL)'>What is Rumor</a></li>
+                      <li class="nav-item" id="receive-button-l"><a class="h1" href=# @click='showInfoBlockL(this.$refs.receiveL)'>Receive a Rumor</a></li>
+                      <li class="nav-item" id="submit-button-l"><a class="h1" href=# @click='showInfoBlockL(this.$refs.submitL)'>Submit a Rumor</a></li>
                   </ul>
               </div>
               <div id="back-l">
-                  <div id="logo-back-l">
+                  <div id="logo-back-l" @click='logoBackLClick'>
                       <img id="logo-img-back-l" src="img/ambigram-vertical.svg">
                   </div>
                   
-                  <div id="what-l">
+                  <div id="what-l" ref='whatL'>
                       <SanityBlocks :blocks="config.about"/>
                   </div>
                   
-                  <div id="receive-l">
+                  <div id="receive-l" ref='receiveL'>
                       <form id="receive-form-l" method="post" action="https://formspree.io/rumor.pu@gmail.com">
                           <input class="h1" type="text" placeholder="NAME" name="name">
                           <input class="h1" type="email" name="email" placeholder="EMAIL">
@@ -72,7 +72,7 @@
                       </form>
                   </div>
 
-                  <div id="submit-l">
+                  <div id="submit-l" ref='submitL'>
                       <SanityBlocks :blocks="config.submit"/>
                       <a class="h1" href="mailto:rumor.pu@gmail.com">SUBMIT</a>
                   </div>
@@ -138,111 +138,207 @@
 </template>
 
 <script>
-  import sanity from "../client";
-  import { SanityBlocks } from "sanity-blocks-vue-component";
+    import sanity from "../client";
+    import { SanityBlocks } from "sanity-blocks-vue-component";
 
-  const configQuery = 
-  `*[_id == 'config'][0] {
+    const configQuery = 
+        `*[_id == 'config'][0] {
         ...           
-    }`;
+        }`;
 
-  const linksQuery = 
-  `*[_type == "link"]{
-      _id,
-      title,
-      url,
-      'thumb' : thumb.asset->url,
-      'thumbHover' : thumbHover.asset->url
-    }`;
+    const linksQuery = 
+        `*[_type == "link"]{
+        _id,
+        title,
+        url,
+        'thumb' : thumb.asset->url,
+        'thumbHover' : thumbHover.asset->url
+        }`;
 
-  export default {
-    name: "Home",
-    components: { SanityBlocks },
-    data() {
-      return {
-        config: false,
-        loading: true,
-        links: []
-      };
-    },
-    created() {
-      this.fetchData();
-    },
-    methods: {
+    export default {
+        name: "Home",
+        components: { SanityBlocks },
+        data() {
+            return {
+                config: false,
+                loading: true,
+                links: []
+            };
+        },
+        created() {
+            this.fetchData();
+        },
 
-        fetchData() {
-            this.error = this.post = null;
-            this.loading = true;
+        mounted() {
+            this.$nextTick(() => {
+                var resizeWait
+                clearTimeout(resizeWait);
+                resizeWait = setTimeout(this.setUpSite, 1000);
+            })
+        },
 
-            sanity.fetch(linksQuery).then(
+        methods: {
+
+            fetchData() {
+                this.error = this.post = null;
+                this.loading = true;
+
+                sanity.fetch(linksQuery).then(
                 (linksRes) => {
                     this.links = linksRes;
                 },
                 (error) => {
                     this.error = error;
                 }
-            );
+                );
 
-            sanity.fetch(configQuery).then(
+                sanity.fetch(configQuery).then(
                 (configRes) => {
                     this.config = configRes;
                 },
                 (error) => {
                     this.error = error;
                 }
-            );
+                );
 
-            this.loading = false;
-        },
+                this.loading = false;
+            },
 
-        swapIframe(loc){
-            document.getElementById('background').src = loc;
+            setUpSite(){
+                SetUpSite();
+            },
+
+            logoFrontLClick(){
+                LogoFrontLClick();
+            },
+
+            showInfoBlockL(el){
+                ShowInfoBlockL(el);
+            },
+
+            logoBackLClick(){
+            LogoBackLClick();
+            },
+
+            logoFrontBClick(){
+                LogoFrontBClick();
+            },
+
+            showInfoBlockB(el){
+                ShowInfoBlockB(el);
+            },
+
+            logoBackBClick(){
+                LogoBackBClick();
+            },
+
+            showInfoBlockSimple(){
+                ShowInfoBlockSimple()
+            },
+
+            closeSimpleClick(){
+                CloseSimpleClick();
+            },
+
+            swapIframe(loc){
+                document.getElementById('background').src = loc;
+            }
+
         }
-
-    }
-  };
+    };
     
-    var windowHeight = window.innerHeight;
+    var windowHeight;
 
-    var logoPadding = parseFloat(document.getElementById(logo-front-l).style.padding-top) * 2;
-    var logoHeight = windowHeight - logoPadding;
-    var logoWidth = logoHeight * 0.1875;
+    var logoFrontB;
+
+    var logoPadding;
+    var logoHeight;
+    var logoWidth;
     
-    var leftWidth = logoWidth + logoPadding;
+    var leftWidth;
 
-    var windowWidth = window.innerWidth;
+    var windowWidth;
 
-    var logoPaddingB = parseFloat(document.getElementById(logo-front-b).style.padding-top) * 2;
-    var logoWidthB = windowWidth - logoPaddingB;
-    var logoHeightB = logoWidthB * 0.2125;
+    var logoPaddingB;
+    var logoWidthB;
+    var logoHeightB;
 
-    var bottomHeight = logoHeightB + logoPaddingB;
+    var bottomHeight;
 
     //selectors
-    var logoImgFrontL = document.getElementById(logo-img-front-l);
-    var logoImgBackL = document.getElementById(logo-img-back-l);
-    var left = document.getElementById(left);
-    var whatL = document.getElementById(what-l);
-    var receiveL = document.getElementById(receive-l);
-    var submitL = document.getElementById(submit-l);
-    var navL = document.getElementById(nav-l);
-    var frontL = document.getElementById(front-l);
+    var logoImgFrontL;
+    var logoImgBackL;
+    var left;
+    var whatL;
+    var receiveL;
+    var submitL;
+    var navL;
+    var frontL;
 
-    var logoImgFrontB = document.getElementById(logo-img-front-b);
-    var logoImgBackB = document.getElementById(logo-img-back-b);
-    var bottom = document.getElementById(bottom);
-    var backB = document.getElementById(back-b);
-    var navB = document.getElementById(nav-b);
+    var logoImgFrontB;
+    var logoImgBackB;
+    var bottom;
+
+    var whatB;
+    var receiveB;
+    var submitB;
+
+    var backB;
+    var navB;
+    var frontB;
+
+    var paddingL = 30;
 
     function SetUpSite()
     {
+        windowHeight = window.innerHeight;
+
+        logoFrontB = document.getElementById('logo-front-b');
+
+        logoPadding = paddingL * 2;
+        logoHeight = windowHeight - logoPadding;
+        logoWidth = logoHeight * 0.1875;
+        
+        leftWidth = logoWidth + logoPadding;
+
+        windowWidth = window.innerWidth;
+
+        logoPaddingB = parseFloat(logoFrontB.style.padding) * 2;
+        logoWidthB = windowWidth - logoPaddingB;
+        logoHeightB = logoWidthB * 0.2125;
+
+        bottomHeight = logoHeightB + logoPaddingB;
+
+        //selectors
+        logoImgFrontL = document.getElementById('logo-img-front-l');
+        logoImgBackL = document.getElementById('logo-img-back-l');
+        left = document.getElementById('left');
+        whatL = document.getElementById('what-l');
+        receiveL = document.getElementById('receive-l');
+        submitL = document.getElementById('submit-l');
+        navL = document.getElementById('nav-l');
+        frontL = document.getElementById('front-l');
+
+        logoImgFrontB = document.getElementById('logo-img-front-b');
+        logoImgBackB = document.getElementById('logo-img-back-b');
+        bottom = document.getElementById('bottom');
+
+        whatB = document.getElementById('what-b');
+        receiveB = document.getElementById('receive-b');
+        submitB = document.getElementById('submit-b');
+
+        backB = document.getElementById('back-b');
+        navB = document.getElementById('nav-b');
+        frontB = document.getElementById('front-b');
+
         //########## LEFT ##########//     
         //set widths
         logoImgFrontL.style.width = logoWidth + 'px';
         logoImgBackL.style.width = logoWidth + 'px';
 
-        if(left.classList.contains(closed)){
+        if(left.classList.contains('closed')){
             left.style.width = leftWidth + 'px';
+            console.log('set up left width!');
         }
 
         whatL.style.paddingLeft = leftWidth;
@@ -264,6 +360,11 @@
         //$(".floaty").draggable({ 
         //    containment: "window"
         //}); 
+
+        console.log('logo width: ' + logoWidth);
+        console.log('left width: ' + leftWidth);
+        console.log('window height: ' + windowHeight);
+        console.log('logo padding: ' + logoPadding);
     }
 
     //set mobile height to viewport    
@@ -284,13 +385,14 @@
   
     // RESIZE FUNCTION
     function resize(){
-
+        console.log('resize!');
         //########## LEFT ##########//     
         //set widths
         logoImgFrontL.style.width = logoWidth + 'px';
         logoImgBackL.style.width = logoWidth + 'px';
 
-        if(left.classList.contains(closed)){
+        if(left.classList.contains('closed')){
+            console.log('reset left width!');
             left.style.width = leftWidth + 'px';
         }
 
@@ -311,11 +413,11 @@
   //open 1L
     function hClose(){
         logoImgFrontL.style.transform = 'rotateY(0deg)';
-        left.style.width = leftWidth;
+        left.style.width = leftWidth + 'px';
         left.classList.add('closed');
     }
           
-    function ToggleLogoFrontL(){
+    function LogoFrontLClick(){
         if(left.classList.contains('closed')){
             left.style.width = '50%';
             left.classList.remove('closed');
@@ -368,16 +470,6 @@
       bottom.classList.remove('open');
   }
 
-  $("#logo-front-b").click(function(){
-      if($("#bottom").hasClass("open")){
-          lClose();
-      }else{
-          $("#bottom").css("height", "50%").addClass("open");
-          $("#logo-img-front-b").css("transform", "rotateX(-180deg)");
-          $("#nav-b").fadeIn(400);
-      }
-  });
-
   function LogoFrontBClick(){
       if(bottom.classList.contains('open')){
           lClose();
@@ -385,13 +477,13 @@
           bottom.style.height = '50%';
           bottom.classList.add('open');
           logoImgFrontB.style.transform = 'rotateX(-180deg)';
-          FadeIn(navb, 400);
+          FadeIn(navB, 400);
       }
   }
 
   //open 2B
   //call when we click on one of the B menu items
-=  function ShowInfoBlockB(element){
+    function ShowInfoBlockB(element){
         bottom.style.transform = 'rotateY(-180deg)';
         FadeOut(frontB, 400);
         FadeIn(element, 400);
@@ -400,6 +492,7 @@
 
 
   //close 2B
+  //call when clicking on the B logo
   function LogoBackBClick(){
         bottom.style.transform = 'rotateY(0deg)';
         FadeIn(frontB, 400);
@@ -420,12 +513,11 @@
 
   //########## SIMPLE-MOBILE ##########//
   
-    var whatButtonSimple = document.getElementById(what-button-simple);
-    var simpleMobile = document.getElementById(simplemobile);
-    var frontSimple = document.getElementById(front-simple);
-    var whatSimple = document.getElementById(what-simple);
-    var receiveSimple = document.getElementById(receive-simple);
-    var submitSimple = document.getElementById(submit-simple);
+    var simpleMobile = document.getElementById('simplemobile');
+    var frontSimple = document.getElementById('front-simple');
+    var whatSimple = document.getElementById('what-simple');
+    var receiveSimple = document.getElementById('receive-simple');
+    var submitSimple = document.getElementById('submit-simple');
 
     function ShowInfoBlockSimple(element){
         simpleMobile.style.transform = 'rotateY(-180deg)';
@@ -436,7 +528,7 @@
 
     //call on close-simple button
     function CloseSimpleClick(){
-        simpleMObile.style.transform = 'rotateY(0deg)';
+        simpleMobile.style.transform = 'rotateY(0deg)';
         FadeIn(frontSimple, 400);
         if(whatSimple.classList.contains('open')){
             FadeOut(whatSimple, 400);
@@ -454,28 +546,14 @@
 
   //fade functions
     function FadeOut(element, fadeTime) {
-        var op = 1;  // initial opacity
-        var timer = setInterval(function () {
-            if (op <= 0.1){
-                clearInterval(timer);
-                element.style.display = 'none';
-            }
-            element.style.opacity = op;
-            element.style.filter = 'alpha(opacity=' + op * 100 + ")";
-            op -= op * 0.1;
-        }, fadeTime);
+        var fadeWait
+        clearTimeout(fadeWait);
+        fadeWait = setTimeout(function(){element.style.display = 'none'}, fadeTime);
     }
 
     function FadeIn(element, fadeTime) {
-    var op = 0.1;  // initial opacity
-    element.style.display = 'block';
-    var timer = setInterval(function () {
-        if (op >= 1){
-            clearInterval(timer);
-        }
-        element.style.opacity = op;
-        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
-        op += op * 0.1;
-    }, fadeTime);
-}
+        var fadeWait
+        clearTimeout(fadeWait);
+        fadeWait = setTimeout(function(){element.style.display = 'block'}, fadeTime);
+    }
 </script>
