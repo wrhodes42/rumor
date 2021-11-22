@@ -140,7 +140,6 @@
 <script>
   import sanity from "../client";
   import { SanityBlocks } from "sanity-blocks-vue-component";
-  //import $ from "jquery";
 
   const configQuery = 
   `*[_id == 'config'][0] {
@@ -169,25 +168,6 @@
     created() {
       this.fetchData();
     },
-    /*
-    mounted() {
-      this.$nextTick(() => {
-
-        var scripts = [
-            "../js/vendor/jquery-ui-1.12.1.custom/jquery-ui-1.12.1.custom/jquery-ui.min.js",
-        ];
-        scripts.forEach(script => {
-            let tag = document.createElement("script");
-            tag.setAttribute("src", script);
-            document.head.appendChild(tag);
-        });
-
-        var setUpWait;
-          clearTimeout(setUpWait);
-          setUpWait = setTimeout(this.setUpSite, 3000);
-      })
-    },
-    */
     methods: {
 
         fetchData() {
@@ -215,179 +195,177 @@
             this.loading = false;
         },
 
-    swapIframe(loc){
-        document.getElementById('background').src = loc;
-    }
-    /*
-      setUpSite(){
-        SetUpSite();
-      }
-      */
+        swapIframe(loc){
+            document.getElementById('background').src = loc;
+        }
+
     }
   };
+    
+    var windowHeight = window.innerHeight;
 
-  //JQUERY STUFF
-    /*
-    var windowHeight = $(window).height();
-
-    var logoPadding = $("#logo-front-l").css("padding-top").replace("px", "") * 2;
+    var logoPadding = parseFloat(document.getElementById(logo-front-l).style.padding-top) * 2;
     var logoHeight = windowHeight - logoPadding;
     var logoWidth = logoHeight * 0.1875;
     
     var leftWidth = logoWidth + logoPadding;
 
-    var windowWidth = $(window).width();
+    var windowWidth = window.innerWidth;
 
-    var logoPaddingB = $("#logo-front-b").css("padding-top").replace("px", "") * 2;
+    var logoPaddingB = parseFloat(document.getElementById(logo-front-b).style.padding-top) * 2;
     var logoWidthB = windowWidth - logoPaddingB;
     var logoHeightB = logoWidthB * 0.2125;
 
     var bottomHeight = logoHeightB + logoPaddingB;
 
-  function SetUpSite()
-  {
-    //########## LEFT ##########//     
-    //set widths
-    $("#logo-img-front-l").css("width", logoWidth + "px");
-    $("#logo-img-back-l").css("width", logoWidth + "px");
+    //selectors
+    var logoImgFrontL = document.getElementById(logo-img-front-l);
+    var logoImgBackL = document.getElementById(logo-img-back-l);
+    var left = document.getElementById(left);
+    var whatL = document.getElementById(what-l);
+    var receiveL = document.getElementById(receive-l);
+    var submitL = document.getElementById(submit-l);
+    var navL = document.getElementById(nav-l);
+    var frontL = document.getElementById(front-l);
 
-    $("#left.closed").css("width", leftWidth);
-    $("#what-l").css("padding-left", leftWidth);
-    $("#receive-l").css("padding-left", leftWidth);
-    $("#submit-l").css("padding-left", leftWidth);
+    var logoImgFrontB = document.getElementById(logo-img-front-b);
+    var logoImgBackB = document.getElementById(logo-img-back-b);
+    var bottom = document.getElementById(bottom);
+    var backB = document.getElementById(back-b);
+    var navB = document.getElementById(nav-b);
 
-    //########## BOTTOM ##########//
-    //set heights
+    function SetUpSite()
+    {
+        //########## LEFT ##########//     
+        //set widths
+        logoImgFrontL.style.width = logoWidth + 'px';
+        logoImgBackL.style.width = logoWidth + 'px';
 
-    $("#logo-img-front-b").css("height", logoHeightB + "px");
-    $("#logo-img-back-b").css("height", logoHeightB + "px");
+        if(left.classList.contains(closed)){
+            left.style.width = leftWidth + 'px';
+        }
 
-    $("#bottom").css("height", bottomHeight);
-    $("#back-b").css("padding-bottom", bottomHeight);
-    $("#nav-b").css("padding-bottom", bottomHeight);
-    //END 
-    
-    // draggable floaty things
-    $(".floaty").draggable({ 
-        containment: "window"
-    });
+        whatL.style.paddingLeft = leftWidth;
+        receiveL.style.paddingLeft = leftWidth;
+        submitL.style.paddingLeft = leftWidth;
 
-    //little fix for the iframe size on mobile
-    //mobile hack
-    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-        // Add body class to target styles for touch devices with CSS
-        $('body').addClass('touch-device');
-    }      
-  }
+        //########## BOTTOM ##########//
+        //set heights
+        logoImgFrontB.style.height = logoHeightB + 'px';
+        logoImgBackB.style.height = logoHeightB + 'px';
 
-  ///////////////////////////////end setup site
+        bottom.style.height = bottomHeight;
+        backB.style.paddingBottom = bottomHeight;
+        navB.style.paddingBottom = bottomHeight;
 
-  //set mobile height to viewport                
-  function onResize() {
-    document.documentElement.style.setProperty('--window-height', window.innerHeight + "px");
-  }
-  window.onresize = onResize;
+        //END 
+
+        // draggable floaty things
+        //$(".floaty").draggable({ 
+        //    containment: "window"
+        //}); 
+    }
+
+    //set mobile height to viewport    
+    var resizeId;
+    function onResize() {
+        document.documentElement.style.setProperty('--window-height', window.innerHeight + "px");
+        clearTimeout(resizeId);
+        resizeId = setTimeout(resize, 500);
+    }
+    window.onresize = onResize;
   
   
-  //reveal floatys on click
-  $('.flap').click(function(){
-    $('#navigation').fadeIn(400);
-    $('.flap').removeClass('flap');
-  });
+    //reveal floatys on click
+    //$('.flap').click(function(){
+    //  $('#navigation').fadeIn(400);
+    //  $('.flap').removeClass('flap');
+    //});
   
-  //smart resize
-  var resizeId;
-  $(window).resize(function() {
-    clearTimeout(resizeId);
-    resizeId = setTimeout(resize, 500);
-  });
-  
+    // RESIZE FUNCTION
+    function resize(){
 
-  
-  // RESIZE FUNCTION
-  function resize(){
+        //########## LEFT ##########//     
+        //set widths
+        logoImgFrontL.style.width = logoWidth + 'px';
+        logoImgBackL.style.width = logoWidth + 'px';
 
-    //LEFT
+        if(left.classList.contains(closed)){
+            left.style.width = leftWidth + 'px';
+        }
 
-    var logoPadding = $("#logo-front-l").css("padding-top").replace("px", "") * 2;
+        whatL.style.paddingLeft = leftWidth;
+        receiveL.style.paddingLeft = leftWidth;
+        submitL.style.paddingLeft = leftWidth;
 
-    var leftWidth = logoWidth + logoPadding;
+        //########## BOTTOM ##########//
+        //set heights
+        logoImgFrontB.style.height = logoHeightB + 'px';
+        logoImgBackB.style.height = logoHeightB + 'px';
 
-    $("#logo-img-front-l").css("width", logoWidth + "px");
-    $("#logo-img-back-l").css("width", logoWidth + "px");
+        bottom.style.height = bottomHeight;
+        backB.style.paddingBottom = bottomHeight;
+        navB.style.paddingBottom = bottomHeight;
+    }
 
-    $("#left.closed").css("width", leftWidth);
-    $("#what-l").css("padding-left", leftWidth);
-    $("#receive-l").css("padding-left", leftWidth);
-    $("#submit-l").css("padding-left", leftWidth);
-    
-    //BOTTOM
-    var windowWidth = $(window).innerWidth();
-
-    var logoPaddingB = $("#logo-front-b").css("padding-top").replace("px", "") * 2;
-    var logoWidthB = windowWidth - logoPaddingB;
-    var logoHeightB = logoWidthB * 0.2125;
-
-    var bottomHeight = logoHeightB + logoPaddingB;
-
-    $("#logo-img-front-b").css("height", logoHeightB + "px");
-    $("#logo-img-back-b").css("height", logoHeightB + "px");
-
-    $("#bottom").css("height", bottomHeight);
-    $("#back-b").css("padding-bottom", bottomHeight);
-    $("#nav-b").css("padding-bottom", bottomHeight);
-  }
-
-  //open 1
-  function hClose(){
-      $("#logo-img-front-l").css("transform", "rotateY(0deg)");
-      $("#left").css("width", leftWidth).addClass("closed");
-  }
+  //open 1L
+    function hClose(){
+        logoImgFrontL.style.transform = 'rotateY(0deg)';
+        left.style.width = leftWidth;
+        left.classList.add('closed');
+    }
           
-  $("#logo-front-l").click(function(){
-      if($("#left").hasClass("closed")){
-          $("#left").css("width", "50%").removeClass("closed");
-          $("#logo-img-front-l").css("transform", "rotateY(-180deg)");
-          $("#nav-l").delay(400).fadeIn(150);
-      } else{
-          $("#nav-l").fadeOut(150);
-          setTimeout(hClose, 150);
-      }
-  });
+    function ToggleLogoFrontL(){
+        if(left.classList.contains('closed')){
+            left.style.width = '50%';
+            left.classList.remove('closed');
+            logoImgFrontL.style.transform = 'rotateY(-180deg)';
+            setTimeout(function(){
+                FadeIn(navL, 150);
+            }, 400);
+        }
+        else{
+            FadeOut(navL, 150);
+            setTimeout(hClose, 150);
+        }
+    }
   
-  //open 2
-  $("#what-button-l").click(function(){
-      $("#left").css("transform", "rotateX(-180deg)");
-      $("#front-l").fadeOut(400);
-      $("#what-l").fadeIn(400);
-  });
+    //open 2L
+    //call when we click on one of the L menu items
+    function ShowInfoBlockL(element){
+        left.style.transform = 'rotateX(-180deg)';
+        FadeOut(frontL, 400);
+        FadeIn(element, 400);
+        element.classList.add('open');
+    }
 
-  $("#receive-button-l").click(function(){
-      $("#left").css("transform", "rotateX(-180deg)");
-      $("#front-l").fadeOut(400);
-      $("#receive-l").fadeIn(400);
-  });
+    //close 2L
+    //call when we click logo-back-l
+    function LogoBackLClick(){
+        left.style.transform = 'rotateX(0deg)';
+        FadeIn(frontL, 400);
+        if(whatL.classList.contains('open')){
+            FadeOut(whatL, 400);
+            whatL.classList.remove('open');
+        }
+        if(receiveL.classList.contains('open')){
+            FadeOut(receiveL, 400);
+            receiveL.classList.remove('open');
+        }
+        if(submitL.classList.contains('open')){
+            FadeOut(submitL, 400);
+            submitL.classList.remove('open');
+        }
+    }
 
-  $("#submit-button-l").click(function(){
-      $("#left").css("transform", "rotateX(-180deg)");
-      $("#front-l").fadeOut(400);
-      $("#submit-l").fadeIn(400);
-  });
+//BOTTOM FLAP
 
-  //close 2
-  $("#logo-back-l").click(function(){
-      $("#left").css("transform", "rotateX(0deg)");
-      $("#front-l").fadeIn(400);
-      $("#what-l").fadeOut(400);
-      $("#receive-l").fadeOut(400);
-      $("#submit-l").fadeOut(400);
-  });
-
-  // open 1
+  // open 1B
   function lClose(){
-      $("#nav-b").fadeOut(400);
-      $("#logo-img-front-b").css("transform", "rotateX(0deg)");
-      $("#bottom").css("height", bottomHeight).removeClass("open");
+      FadeOut(navB, 400);
+      logoImgFrontB.style.transform = 'rotateX(0deg)';
+      bottom.style.height = bottomHeight;
+      bottom.classList.remove('open');
   }
 
   $("#logo-front-b").click(function(){
@@ -400,63 +378,104 @@
       }
   });
 
-  //open 2
-  $("#what-button-b").click(function(){
-      $("#bottom").css("transform", "rotateY(-180deg)");
-      $("#front-b").fadeOut(400);
-      $("#what-b").fadeIn(400);
-  });
+  function LogoFrontBClick(){
+      if(bottom.classList.contains('open')){
+          lClose();
+      } else{
+          bottom.style.height = '50%';
+          bottom.classList.add('open');
+          logoImgFrontB.style.transform = 'rotateX(-180deg)';
+          FadeIn(navb, 400);
+      }
+  }
 
-  $("#receive-button-b").click(function(){
-      $("#bottom").css("transform", "rotateY(-180deg)");
-      $("#front-b").fadeOut(400);
-      $("#receive-b").fadeIn(400);
-  });
-
-  $("#submit-button-b").click(function(){
-      $("#bottom").css("transform", "rotateY(-180deg)");
-      $("#front-b").fadeOut(400);
-      $("#submit-b").fadeIn(400);
-  });
+  //open 2B
+  //call when we click on one of the B menu items
+=  function ShowInfoBlockB(element){
+        bottom.style.transform = 'rotateY(-180deg)';
+        FadeOut(frontB, 400);
+        FadeIn(element, 400);
+        element.classList.add('open');
+    }
 
 
-  //close 2
-  $("#logo-back-b").click(function(){
-      $("#bottom").css("transform", "rotateY(0deg)");
-      $("#front-b").fadeIn(400);
-      $("#what-b").fadeOut(400);
-      $("#receive-b").fadeOut(400);
-      $("#submit-b").fadeOut(400);
-  });
+  //close 2B
+  function LogoBackBClick(){
+        bottom.style.transform = 'rotateY(0deg)';
+        FadeIn(frontB, 400);
+        if(whatB.classList.contains('open')){
+            FadeOut(whatB, 400);
+            whatB.classList.remove('open');
+        }
+        if(receiveB.classList.contains('open')){
+            FadeOut(receiveB, 400);
+            receiveB.classList.remove('open');
+        }
+        if(submitB.classList.contains('open')){
+            FadeOut(submitB, 400);
+            submitB.classList.remove('open');
+        }
+    }
 
 
   //########## SIMPLE-MOBILE ##########//
   
-  $("#what-button-simple").click(function(){
-      $("#simplemobile").css("transform", "rotateY(-180deg)");
-      $("#front-simple").fadeOut(400);
-      $("#what-simple").fadeIn(400);
-  });
+    var whatButtonSimple = document.getElementById(what-button-simple);
+    var simpleMobile = document.getElementById(simplemobile);
+    var frontSimple = document.getElementById(front-simple);
+    var whatSimple = document.getElementById(what-simple);
+    var receiveSimple = document.getElementById(receive-simple);
+    var submitSimple = document.getElementById(submit-simple);
 
-  $("#receive-button-simple").click(function(){
-      $("#simplemobile").css("transform", "rotateY(-180deg)");
-      $("#front-simple").fadeOut(400);
-      $("#receive-simple").fadeIn(400);
-  });
+    function ShowInfoBlockSimple(element){
+        simpleMobile.style.transform = 'rotateY(-180deg)';
+        FadeOut(frontSimple, 400);
+        FadeIn(element, 400);
+        element.classList.add('open');
+    }
 
-  $("#submit-button-simple").click(function(){
-      $("#simplemobile").css("transform", "rotateY(-180deg)");
-      $("#front-simple").fadeOut(400);
-      $("#submit-simple").fadeIn(400);
-  });
+    //call on close-simple button
+    function CloseSimpleClick(){
+        simpleMObile.style.transform = 'rotateY(0deg)';
+        FadeIn(frontSimple, 400);
+        if(whatSimple.classList.contains('open')){
+            FadeOut(whatSimple, 400);
+            whatSimple.classList.remove('open');
+        }
+        if(receiveSimple.classList.contains('open')){
+            FadeOut(receiveSimple, 400);
+            receiveSimple.classList.remove('open');
+        }
+        if(submitSimple.classList.contains('open')){
+            FadeOut(submitSimple, 400);
+            submitSimple.classList.remove('open');
+        }
+    }
 
-  //close simple
-  $("#close-simple").click(function(){
-      $("#simplemobile").css("transform", "rotateY(0deg)");
-      $("#front-simple").fadeIn(400);
-      $("#what-simple").fadeOut(400);
-      $("#receive-simple").fadeOut(400);
-      $("#submit-simple").fadeOut(400);
-  });
-  */
+  //fade functions
+    function FadeOut(element, fadeTime) {
+        var op = 1;  // initial opacity
+        var timer = setInterval(function () {
+            if (op <= 0.1){
+                clearInterval(timer);
+                element.style.display = 'none';
+            }
+            element.style.opacity = op;
+            element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+            op -= op * 0.1;
+        }, fadeTime);
+    }
+
+    function FadeIn(element, fadeTime) {
+    var op = 0.1;  // initial opacity
+    element.style.display = 'block';
+    var timer = setInterval(function () {
+        if (op >= 1){
+            clearInterval(timer);
+        }
+        element.style.opacity = op;
+        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+        op += op * 0.1;
+    }, fadeTime);
+}
 </script>
