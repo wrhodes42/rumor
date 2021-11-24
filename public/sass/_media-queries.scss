@@ -42,33 +42,8 @@
     
     /*FLOATY*/
     .floaty{
-        width: 16rem;
-        height: 16rem;
-    }
-    
-    #archive{
-        top: 10rem;
-        left: 10rem;
-    }
-    
-    #suggestions{
-        top: 20rem;
-        right: 4rem;
-    }
-    
-    #home{
-        top: 30rem;
-        left: 13rem;
-    }
-    
-    #map{
-        top: 50rem;
-        right: 15rem;
-    }
-    
-    #wikipedia{
-        bottom: 15rem;
-        left: 6rem;
+        width: 18rem;
+        height: 18rem;
     }
 }
 
@@ -90,17 +65,6 @@
     #home{
         left: 25rem;
     }
-    
-    .floaty:hover{
-        .floaty-hover{
-            display: block;
-        }
-        
-        .floaty-main{
-            display: none;
-        }
-    }
-
 }
 
 /***** LARGE BREAKPOINT *****/
@@ -117,24 +81,8 @@
     
     /* FLOATY */
     .floaty{
-        width: 18rem;
-        height: 18rem;
-    }
-    
-    #archive{
-        left: 15rem;
-    }
-    
-    #suggestions{
-        right: 8rem;
-    }
-    
-    #home{
-        left: 35rem;
-    }
-    
-    #map{
-        right: 30rem;
+        width: 20rem;
+        height: 20rem;
     }
 }
 
@@ -147,35 +95,7 @@
     
     p{
         font-size: 4rem;
-    }
-    
-    .floaty{
-        width: 18rem;
-        height: 18rem;
-    }
-    
-    #archive{
-        left: 15rem;
-    }
-    
-    #suggestions{
-        right: 14rem;
-    }
-    
-    #home{
-        left: 65rem;
-    }
-    
-    #map{
-        right: 40rem;
-        top: 60rem;
-    }
-    
-    #wikipedia{
-        left: 80rem;
-    }
-    
-    
+    } 
 }
 
 /***** ALTERNATE MOBILE LAYOUT *****/

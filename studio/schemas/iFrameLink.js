@@ -1,5 +1,5 @@
 export default {
-    name: 'link',
+    name: 'iFrameLink',
     title: 'iFrame Link',
     type: 'document',
     fields: [

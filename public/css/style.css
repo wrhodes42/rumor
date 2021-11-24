@@ -43,6 +43,15 @@ p a {
     color: black;
     text-shadow: 0px 0px 12px rgba(0, 0, 255, 0.6); }
 
+.archive {
+  padding: 2rem; }
+  .archive h1 {
+    margin-bottom: 2rem; }
+  .archive li {
+    list-style: none; }
+    .archive li a {
+      font-size: 2rem; }
+
 /***** ORIENTATION: PORTRAIT *****/
 #site-wrapper {
   width: 100vw;
@@ -302,49 +311,36 @@ p a {
 #navigation {
   pointer-events: none;
   z-index: 999;
-  display: none; }
+  display: block; }
 
 .floaty {
   position: fixed;
-  width: 8rem;
-  height: 8rem;
+  width: 10rem;
+  height: 10rem;
   z-index: 999;
   pointer-events: all;
-  display: block; }
+  display: block;
+  padding: 3rem;
+  border-radius: 12px; }
   .floaty img {
     -webkit-filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, 0.5));
     filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, 0.4));
     width: 100%;
     height: 100%;
-    position: absolute;
     -o-object-fit: contain;
     object-fit: contain;
-    padding: 1rem;
     z-index: 999; }
+    .floaty img:hover {
+      cursor: pointer; }
   .floaty .floaty-hover {
     display: none; }
   .floaty:hover {
-    cursor: pointer; }
-
-#archive {
-  top: 5rem;
-  left: 5rem; }
-
-#suggestions {
-  top: 10rem;
-  right: 1rem; }
-
-#map {
-  top: 30rem;
-  right: 7rem; }
-
-#home {
-  top: 20rem;
-  left: 10rem; }
-
-#wikipedia {
-  bottom: 10rem;
-  left: 3rem; }
+    cursor: grab;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.4); }
+    .floaty:hover .floaty-main {
+      display: none; }
+    .floaty:hover .floaty-hover {
+      display: block; }
 
 /***** ORIENTATION: LANDSCAPE *****/
 @media screen and (orientation: landscape) {
@@ -620,28 +616,8 @@ p a {
 
   /*FLOATY*/
   .floaty {
-    width: 16rem;
-    height: 16rem; }
-
-  #archive {
-    top: 10rem;
-    left: 10rem; }
-
-  #suggestions {
-    top: 20rem;
-    right: 4rem; }
-
-  #home {
-    top: 30rem;
-    left: 13rem; }
-
-  #map {
-    top: 50rem;
-    right: 15rem; }
-
-  #wikipedia {
-    bottom: 15rem;
-    left: 6rem; } }
+    width: 18rem;
+    height: 18rem; } }
 @media screen and (min-width: 1024px) and (orientation: landscape) {
   h1, .h1 {
     font-size: 4rem; }
@@ -654,12 +630,7 @@ p a {
 
   /*floaty*/
   #home {
-    left: 25rem; }
-
-  .floaty:hover .floaty-hover {
-    display: block; }
-  .floaty:hover .floaty-main {
-    display: none; } }
+    left: 25rem; } }
 /***** LARGE BREAKPOINT *****/
 @media screen and (min-width: 1200px) {
   h1, .h1 {
@@ -670,47 +641,15 @@ p a {
 
   /* FLOATY */
   .floaty {
-    width: 18rem;
-    height: 18rem; }
-
-  #archive {
-    left: 15rem; }
-
-  #suggestions {
-    right: 8rem; }
-
-  #home {
-    left: 35rem; }
-
-  #map {
-    right: 30rem; } }
+    width: 20rem;
+    height: 20rem; } }
 /***** XTRA LARGE *****/
 @media screen and (min-width: 1800px) {
   h1, .h1 {
     font-size: 8rem; }
 
   p {
-    font-size: 4rem; }
-
-  .floaty {
-    width: 18rem;
-    height: 18rem; }
-
-  #archive {
-    left: 15rem; }
-
-  #suggestions {
-    right: 14rem; }
-
-  #home {
-    left: 65rem; }
-
-  #map {
-    right: 40rem;
-    top: 60rem; }
-
-  #wikipedia {
-    left: 80rem; } }
+    font-size: 4rem; } }
 /***** ALTERNATE MOBILE LAYOUT *****/
 @media screen and (max-width: 768px) {
   #iframe {
