@@ -2,8 +2,8 @@
   <div class="archive">
     <h1>Archive</h1>
     <ul>
-      <li v-for="post in posts" :key="post._id">
-        <a :href="post.pdfLink">{{ post.title }}</a>
+      <li v-for="post in orderedPosts" :key="post._id">
+        <a target='_blank' :href="post.pdfLink">{{ post.title }}</a>
       </li>
     </ul>
   </div>
@@ -11,6 +11,7 @@
 
 <script>
 import sanity from "../client";
+import _ from 'lodash';
 
   const postsQuery = 
     `*[_type == "post"]{
@@ -30,6 +31,11 @@ import sanity from "../client";
     },
     created() {
       this.fetchData();
+    },
+    computed: {
+      orderedPosts: function() {
+        return _.orderBy(this.posts, 'title')
+      }
     },
     methods: {
       fetchData() {

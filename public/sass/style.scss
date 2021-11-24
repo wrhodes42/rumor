@@ -59,6 +59,10 @@ p a {
 
 .archive{
    padding: 2rem;
+   max-width: 800px;
+   margin: 2rem;
+   border-radius: 12px;
+   border: 2px solid black;
    
    h1{
        margin-bottom: 2rem;
@@ -69,6 +73,10 @@ p a {
 
         a{
             font-size: 2rem;
+
+            &:hover{
+                text-shadow: 0px 0px 4px rgba(0, 0, 255, 0.6);
+            }
         }
     }
 }
