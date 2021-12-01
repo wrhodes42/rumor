@@ -23,7 +23,7 @@ h1, .h1 {
   font-weight: bold;
   line-height: 1; }
 
-p {
+p, .p {
   font-size: 1.5rem;
   font-family: 'pilat';
   font-weight: normal;
@@ -42,6 +42,18 @@ p a {
   p a:hover {
     color: black;
     text-shadow: 0px 0px 12px rgba(0, 0, 255, 0.6); }
+
+.xs {
+  font-size: 1.5rem;
+  font-family: 'pilat';
+  font-weight: normal;
+  line-height: 1.2; }
+
+.xxs {
+  font-size: 1.5rem;
+  font-family: 'pilat';
+  font-weight: normal;
+  line-height: 1.2; }
 
 .archive {
   padding: 2rem;
@@ -236,7 +248,7 @@ p a {
   overflow-y: auto;
   height: 100%;
   -webkit-overflow-scrolling: touch; }
-  #what-b p {
+  #what-b p, #what-b .p {
     padding-bottom: 3rem; }
 
 #receive-b {
@@ -245,34 +257,34 @@ p a {
   overflow-y: auto;
   height: 100%;
   -webkit-overflow-scrolling: touch; }
-  #receive-b #receive-form-b {
+  #receive-b .receive-form-b {
     width: 100%;
     text-align: center; }
-    #receive-b #receive-form-b input {
+    #receive-b .receive-form-b input {
       text-align: center;
       margin-bottom: 2rem;
       outline: none;
       border: none;
       border-bottom: 2px solid black;
       width: 100%; }
-      #receive-b #receive-form-b input::-webkit-input-placeholder {
+      #receive-b .receive-form-b input::-webkit-input-placeholder {
         color: black;
         opacity: 1; }
-      #receive-b #receive-form-b input:-ms-input-placeholder {
+      #receive-b .receive-form-b input:-ms-input-placeholder {
         color: black;
         opacity: 1; }
-      #receive-b #receive-form-b input::-ms-input-placeholder {
+      #receive-b .receive-form-b input::-ms-input-placeholder {
         color: black;
         opacity: 1; }
-      #receive-b #receive-form-b input::placeholder {
+      #receive-b .receive-form-b input::placeholder {
         color: black;
         opacity: 1; }
-    #receive-b #receive-form-b input[type=submit] {
+    #receive-b .receive-form-b input[type=submit] {
       background-color: transparent;
       border: none;
       padding: 0.5rem;
       text-shadow: 3px 3px 6px rgba(0, 0, 255, 0.2); }
-      #receive-b #receive-form-b input[type=submit]:hover {
+      #receive-b .receive-form-b input[type=submit]:hover {
         text-shadow: 3px 3px 12px rgba(0, 0, 255, 0.4); }
 
 #submit-b {
@@ -319,13 +331,19 @@ p a {
   z-index: 999;
   display: block; }
 
+.transition {
+  -webkit-transition: 0.4s ease-out;
+  -moz-transition: 0.4s ease-out;
+  -o-transition: 0.4s ease-out;
+  transition: 0.4s ease-out; }
+
 .floaty {
   position: fixed;
   width: 10rem;
   height: 10rem;
   z-index: 999;
   pointer-events: all;
-  display: block;
+  display: none;
   padding: 3rem;
   border-radius: 12px; }
   .floaty img {
@@ -337,12 +355,13 @@ p a {
     object-fit: contain;
     z-index: 999; }
     .floaty img:hover {
-      cursor: pointer; }
+      cursor: pointer;
+      filter: drop-shadow(0px 2px 8px black); }
   .floaty .floaty-hover {
     display: none; }
   .floaty:hover {
     cursor: grab;
-    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.4); }
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.4); }
     .floaty:hover .floaty-main {
       display: none; }
     .floaty:hover .floaty-hover {
@@ -548,33 +567,35 @@ p a {
     overflow-y: auto;
     height: 100%;
     -webkit-overflow-scrolling: touch; }
-    #receive-l #receive-form-l {
+    #receive-l .receive-form-l {
       width: 100%; }
-      #receive-l #receive-form-l input {
+      #receive-l .receive-form-l input {
         margin-bottom: 2rem;
         outline: none;
         border: none;
         border-bottom: 2px solid black;
         width: 100%; }
-        #receive-l #receive-form-l input::-webkit-input-placeholder {
+        #receive-l .receive-form-l input::-webkit-input-placeholder {
           color: black;
           opacity: 1; }
-        #receive-l #receive-form-l input:-ms-input-placeholder {
+        #receive-l .receive-form-l input:-ms-input-placeholder {
           color: black;
           opacity: 1; }
-        #receive-l #receive-form-l input::-ms-input-placeholder {
+        #receive-l .receive-form-l input::-ms-input-placeholder {
           color: black;
           opacity: 1; }
-        #receive-l #receive-form-l input::placeholder {
+        #receive-l .receive-form-l input::placeholder {
           color: black;
           opacity: 1; }
-      #receive-l #receive-form-l input[type=submit] {
+      #receive-l .receive-form-l input.birthday {
+        width: auto; }
+      #receive-l .receive-form-l input[type=submit] {
         background-color: transparent;
         border: none;
         padding: 0.5rem 0.5rem 0.5rem 0rem;
         text-shadow: 3px 3px 6px rgba(0, 0, 255, 0.2);
         text-align: left; }
-        #receive-l #receive-form-l input[type=submit]:hover {
+        #receive-l .receive-form-l input[type=submit]:hover {
           text-shadow: 3px 3px 12px rgba(0, 0, 255, 0.4); }
 
   #submit-l {
@@ -600,8 +621,11 @@ p a {
   h1, .h1 {
     font-size: 5rem; }
 
-  p {
+  p, .p {
     font-size: 2.5rem; }
+
+  .xs {
+    font-size: 2rem; }
 
   /* PORTRAIT */
   #nav-b, #nav-l {
@@ -628,8 +652,11 @@ p a {
   h1, .h1 {
     font-size: 4rem; }
 
-  p {
+  p, .p {
     font-size: 2rem; }
+
+  .xs {
+    font-size: 1.5rem; }
 
   #nav-l .nav-item {
     margin-bottom: 3rem; }
@@ -642,8 +669,11 @@ p a {
   h1, .h1 {
     font-size: 6rem; }
 
-  p {
+  p, .p {
     font-size: 3rem; }
+
+  .xs {
+    font-size: 2rem; }
 
   /* FLOATY */
   .floaty {
@@ -654,7 +684,7 @@ p a {
   h1, .h1 {
     font-size: 8rem; }
 
-  p {
+  p, .p {
     font-size: 4rem; } }
 /***** ALTERNATE MOBILE LAYOUT *****/
 @media screen and (max-width: 768px) {
@@ -773,7 +803,7 @@ p a {
         overflow-y: auto;
         height: 100%;
         -webkit-overflow-scrolling: touch; }
-        #simplemobile #back-simple #what-simple p {
+        #simplemobile #back-simple #what-simple p, #simplemobile #back-simple #what-simple .p {
           padding-bottom: 3rem; }
       #simplemobile #back-simple #receive-simple {
         padding: 1.5rem;

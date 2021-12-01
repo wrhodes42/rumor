@@ -21,12 +21,59 @@
               </div>
               
               <div id="receive-b" ref='receiveB'>
+                  <!--
                   <form id="receive-form-b" method="post" action="https://formspree.io/rumor.pu@gmail.com">
                       <input class="h1" type="text" placeholder="NAME" name="name">
                       <input class="h1" type="email" name="email" placeholder="EMAIL">
 
                       <input type="submit" value="SIGN UP" class="h1 form-submit">
                   </form>
+                  -->
+
+                    <!-- Begin Mailchimp Signup Form -->
+                        <div id="mc_embed_signup">
+                        <form action="https://gmail.us20.list-manage.com/subscribe/post?u=4247af630a4934b76e5791b30&amp;id=970821ba7f" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate receive-form-b" target="_blank" novalidate>
+                            <div id="mc_embed_signup_scroll">
+                            <h1>Subscribe</h1>
+                        <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
+                        <div class="mc-field-group">
+                            <label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
+                        </label>
+                            <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+                        </div>
+                        <div class="mc-field-group">
+                            <label for="mce-FNAME">First Name </label>
+                            <input type="text" value="" name="FNAME" class="" id="mce-FNAME">
+                        </div>
+                        <div class="mc-field-group">
+                            <label for="mce-LNAME">Last Name </label>
+                            <input type="text" value="" name="LNAME" class="" id="mce-LNAME">
+                        </div>
+                        <div class="mc-field-group size1of2">
+                            <label for="mce-BIRTHDAY-month">Birthday </label>
+                            <div class="datefield">
+                                <span class="subfield monthfield"><input class="birthday " type="text" pattern="[0-9]*" value="" placeholder="MM" size="2" maxlength="2" name="BIRTHDAY[month]" id="mce-BIRTHDAY-month"></span> / 
+                                <span class="subfield dayfield"><input class="birthday " type="text" pattern="[0-9]*" value="" placeholder="DD" size="2" maxlength="2" name="BIRTHDAY[day]" id="mce-BIRTHDAY-day"></span> 
+                                <span class="small-meta nowrap">( mm / dd )</span>
+                            </div>
+                        </div>	<div id="mce-responses" class="clear foot">
+                                <div class="response" id="mce-error-response" style="display:none"></div>
+                                <div class="response" id="mce-success-response" style="display:none"></div>
+                            </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_4247af630a4934b76e5791b30_970821ba7f" tabindex="-1" value=""></div>
+                                <div class="optionalParent">
+                                    <div class="clear foot">
+                                        <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+                                        <!--
+                                            <p class="brandingLogo"><a href="http://eepurl.com/hOiox1" title="Mailchimp - email marketing made easy and fun"><img src="https://eep.io/mc-cdn-images/template_images/branding_logo_text_dark_dtp.svg"></a></p>
+                                        -->
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        </div>
+                        <!--End Mailchimp Signup Form-->
+
               </div>
               
               <div id="submit-b" ref='submitB'>
@@ -64,12 +111,57 @@
                   </div>
                   
                   <div id="receive-l" ref='receiveL'>
+                      <!--
                       <form id="receive-form-l" method="post" action="https://formspree.io/rumor.pu@gmail.com">
                           <input class="h1" type="text" placeholder="NAME" name="name">
                           <input class="h1" type="email" name="email" placeholder="EMAIL">
 
                           <input type="submit" value="SIGN UP" class="h1 form-submit">
                       </form>
+                      -->
+
+                        <!-- Begin Mailchimp Signup Form -->
+                        <div id="mc_embed_signup">
+                        <form action="https://gmail.us20.list-manage.com/subscribe/post?u=4247af630a4934b76e5791b30&amp;id=970821ba7f" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate receive-form-l" target="_blank" novalidate>
+                            <div id="mc_embed_signup_scroll">
+                        <div class="indicates-required xxs"><span class="asterisk xxs">*</span> indicates required</div>
+                        <div class="mc-field-group">
+                            <label class='xs' for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
+                        </label>
+                            <input type="email" value="" name="EMAIL" class="required email p" id="mce-EMAIL">
+                        </div>
+                        <div class="mc-field-group">
+                            <label class='xs' for="mce-FNAME">First Name </label>
+                            <input type="text" value="" name="FNAME" class="p" id="mce-FNAME">
+                        </div>
+                        <div class="mc-field-group">
+                            <label class='xs' for="mce-LNAME">Last Name </label>
+                            <input type="text" value="" name="LNAME" class="p" id="mce-LNAME">
+                        </div>
+                        <div class="mc-field-group size1of2">
+                            <label class='xs' for="mce-BIRTHDAY-month">Birthday </label>
+                            <div class="datefield p">
+                                <span class="subfield monthfield xs"><input class="birthday p" type="text" pattern="[0-9]*" value="" placeholder="MM" size="2" maxlength="2" name="BIRTHDAY[month]" id="mce-BIRTHDAY-month"></span> / 
+                                <span class="subfield dayfield xs"><input class="birthday p" type="text" pattern="[0-9]*" value="" placeholder="DD" size="2" maxlength="2" name="BIRTHDAY[day]" id="mce-BIRTHDAY-day"></span> 
+                                <span class="small-meta nowrap xs">( mm / dd )</span>
+                            </div>
+                        </div>	<div id="mce-responses" class="clear foot">
+                                <div class="response" id="mce-error-response" style="display:none"></div>
+                                <div class="response" id="mce-success-response" style="display:none"></div>
+                            </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_4247af630a4934b76e5791b30_970821ba7f" tabindex="-1" value=""></div>
+                                <div class="optionalParent">
+                                    <div class="clear foot">
+                                        <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button h1">
+                                        <!--
+                                            <p class="brandingLogo"><a href="http://eepurl.com/hOiox1" title="Mailchimp - email marketing made easy and fun"><img src="https://eep.io/mc-cdn-images/template_images/branding_logo_text_dark_dtp.svg"></a></p>
+                                        -->
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        </div>
+                        <!--End Mailchimp Signup Form-->
                   </div>
 
                   <div id="submit-l" ref='submitL'>
@@ -170,23 +262,28 @@
 
         mounted() {
             this.$nextTick(() => {
-                var resizeWait
-                clearTimeout(resizeWait);
-                resizeWait = setTimeout(this.setUpSite, 1000);
+                
+                var setUpWait
+                clearTimeout(setUpWait);
+                setUpWait = setTimeout(this.setUpiFrameLinks, 500);
+                
+                this.setUpSite();
             })
         },
 
-        updated(){
-            let iFrameLinks = this.$refs.navigation.children;
-            
-            var i;
-            for(i = 0; i < iFrameLinks.length; i++){
-               this.positionFloaty(iFrameLinks[i]);
-               this.dragElement(iFrameLinks[i]);
-            }
-        },
-
         methods: {
+
+            setUpiFrameLinks() {
+                let iFrameLinks = this.$refs.navigation.children;
+
+                var i;
+                for(i = 0; i < iFrameLinks.length; i++){
+                    iFrameLinks[i].style.display = 'block';
+                    this.positionFloaty(iFrameLinks[i]);
+                    this.dragElement(iFrameLinks[i]);
+                }
+
+            },
 
             fetchData() {
                 this.error = this.post = null;
@@ -215,10 +312,9 @@
 
             positionFloaty(el){
                 var randomL = this.randomNumber(10, window.innerWidth - 100);
-                var randomT = this.randomNumber(10, window.innerHeight - 80);
+                var randomT = this.randomNumber(10, window.innerHeight - 100);
                 el.style.left = randomL + 'px';
                 el.style.top = randomT + 'px';
-                console.log('floaty positioned!');
             },
 
             randomNumber(min, max) { 
@@ -363,7 +459,6 @@
         logoWidth = logoHeight * 0.1875;
         
         leftWidth = logoWidth + logoPadding;
-        console.log('left width: ' + leftWidth);
 
         windowWidth = window.innerWidth;
 
@@ -435,14 +530,29 @@
   
     // RESIZE FUNCTION
     function resize(){
-        console.log('resize!');
+
+        windowHeight = window.innerHeight;
+
+        logoPadding = paddingL * 2;
+        logoHeight = windowHeight - logoPadding;
+        logoWidth = logoHeight * 0.1875;
+        
+        leftWidth = logoWidth + logoPadding;
+
+        windowWidth = window.innerWidth;
+
+        logoPaddingB = paddingL * 2;
+        logoWidthB = windowWidth - logoPaddingB;
+        logoHeightB = logoWidthB * 0.2125;
+
+        bottomHeight = logoHeightB + logoPaddingB;
+
         //########## LEFT ##########//     
         //set widths
         logoImgFrontL.style.width = logoWidth + 'px';
         logoImgBackL.style.width = logoWidth + 'px';
 
         if(left.classList.contains('closed')){
-            console.log('reset left width!');
             left.style.width = leftWidth + 'px';
         }
 
@@ -458,6 +568,15 @@
         bottom.style.height = bottomHeight + 'px';
         backB.style.paddingBottom = bottomHeight + 'px';
         navB.style.paddingBottom = bottomHeight + 'px';
+
+
+        //position floaties
+
+        var floaties = document.querySelectorAll('.floaty');
+        var i;
+        for(i = 0; i < floaties.length; i++){
+            PositionFloaty(floaties[i]);
+        }
     }
 
   //open 1L
@@ -606,5 +725,25 @@
                 element.style.display = 'block';
             }
         }, fadeTime);
+    }
+
+    //iframe links functions
+
+    function PositionFloaty(el){
+
+        el.classList.add('transition');
+
+        var randomL = RandomNumber(10, window.innerWidth - 100);
+        var randomT = RandomNumber(10, window.innerHeight - 100);
+        el.style.left = randomL + 'px';
+        el.style.top = randomT + 'px';   
+
+        el.addEventListener('transitionend', () => {
+            el.classList.remove('transition');
+        })
+    }
+
+    function RandomNumber(min, max) { 
+        return Math.random() * (max - min) + min;
     }
 </script>

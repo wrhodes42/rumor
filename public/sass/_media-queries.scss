@@ -10,8 +10,12 @@
         font-size: 5rem;
     }
     
-    p{
+    p, .p{
         font-size: 2.5rem;
+    }
+
+    .xs{
+        font-size: 2rem;
     }
     
     
@@ -52,8 +56,12 @@
         font-size: 4rem;
     }
     
-    p{
+    p, .p{
         font-size: 2rem;
+    }
+
+    .xs {
+        font-size: 1.5rem;
     }
     
     #nav-l .nav-item{
@@ -75,8 +83,12 @@
         font-size: 6rem;
     }
     
-    p{
+    p, .p{
         font-size: 3rem;
+    }
+
+    .xs{
+        font-size: 2rem;
     }
     
     /* FLOATY */
@@ -93,7 +105,7 @@
         font-size: 8rem;
     }
     
-    p{
+    p, .p{
         font-size: 4rem;
     } 
 }
@@ -234,7 +246,7 @@
                 height: 100%;
                 -webkit-overflow-scrolling: touch;
 
-                p{
+                p, .p{
                     padding-bottom: 3rem;
                 }
 
