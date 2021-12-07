@@ -1,4 +1,4 @@
-# rumor-2
+# Rumor
 
 ## Project setup
 ```
