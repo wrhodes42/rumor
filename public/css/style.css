@@ -791,37 +791,48 @@ p a {
         display: none;
         overflow-y: auto;
         height: 100%;
-        -webkit-overflow-scrolling: touch; }
-        #simplemobile #back-simple #receive-simple #receive-form-simple {
+        -webkit-overflow-scrolling: touch;
+        font-size: 1.5rem;
+        font-family: "pilat", Helvetica, Arial, sans-serif; }
+        #simplemobile #back-simple #receive-simple .receive-form-simple {
           width: 100%;
           text-align: center; }
-          #simplemobile #back-simple #receive-simple #receive-form-simple input {
+          #simplemobile #back-simple #receive-simple .receive-form-simple .indicates-required {
+            margin-bottom: 1rem; }
+          #simplemobile #back-simple #receive-simple .receive-form-simple .mc-field-group {
+            margin-bottom: 3rem; }
+          #simplemobile #back-simple #receive-simple .receive-form-simple input {
             text-align: center;
-            margin-bottom: 2rem;
             outline: none;
             border: none;
             border-bottom: 2px solid black;
             width: 100%;
-            border-radius: 0px; }
-            #simplemobile #back-simple #receive-simple #receive-form-simple input::-webkit-input-placeholder {
+            border-radius: 0px;
+            font-size: 3rem;
+            font-family: "pilat", Helvetica, Arial, sans-serif;
+            font-weight: bold; }
+            #simplemobile #back-simple #receive-simple .receive-form-simple input::-webkit-input-placeholder {
               color: black;
               opacity: 1; }
-            #simplemobile #back-simple #receive-simple #receive-form-simple input:-ms-input-placeholder {
+            #simplemobile #back-simple #receive-simple .receive-form-simple input:-ms-input-placeholder {
               color: black;
               opacity: 1; }
-            #simplemobile #back-simple #receive-simple #receive-form-simple input::-ms-input-placeholder {
+            #simplemobile #back-simple #receive-simple .receive-form-simple input::-ms-input-placeholder {
               color: black;
               opacity: 1; }
-            #simplemobile #back-simple #receive-simple #receive-form-simple input::placeholder {
+            #simplemobile #back-simple #receive-simple .receive-form-simple input::placeholder {
               color: black;
               opacity: 1; }
-          #simplemobile #back-simple #receive-simple #receive-form-simple input[type=submit] {
+          #simplemobile #back-simple #receive-simple .receive-form-simple input[type=submit] {
             background-color: transparent;
             border: none;
             padding: 0.5rem;
-            text-shadow: 3px 3px 6px rgba(0, 0, 255, 0.2); }
-            #simplemobile #back-simple #receive-simple #receive-form-simple input[type=submit]:hover {
+            text-shadow: 3px 3px 6px rgba(0, 0, 255, 0.2);
+            margin: auto; }
+            #simplemobile #back-simple #receive-simple .receive-form-simple input[type=submit]:hover {
               text-shadow: 3px 3px 12px rgba(0, 0, 255, 0.4); }
+          #simplemobile #back-simple #receive-simple .receive-form-simple input.birthday {
+            width: auto; }
       #simplemobile #back-simple #submit-simple {
         padding: 1.5rem;
         padding-bottom: 9rem;
